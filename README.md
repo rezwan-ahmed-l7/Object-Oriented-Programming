@@ -24,7 +24,7 @@
 
 This repository contains C++ programs, assignments, exam questions, and practice examples focused on Object-Oriented Programming.
 
-The repository is organized as a learning roadmap, starting with classes and objects and gradually moving through constructors, encapsulation, inheritance, polymorphism, operator overloading, STL, file handling, and template classes.
+The repository is organized as a learning roadmap, starting with classes and objects and gradually moving through constructors, encapsulation, access control, inheritance, polymorphism, abstraction, operator overloading, STL, file handling, and template classes.
 
 The main purpose of this repository is to strengthen my understanding of OOP principles, improve coding practices, and develop problem-solving skills using C++.
 
@@ -44,57 +44,71 @@ The folders inside [C++ Codes](C%2B%2B%20Codes) are arranged in a beginner-frien
 * Constructor overloading
 * Constructor and destructor order
 
-### 03. Access Control & Encapsulation
-* Private members
-* Inheritance access control
-* Basic abstraction using abstract classes
+### 03. Encapsulation
+* Private data members
+* Data access through public member functions
+* Basic data hiding
 
-### 04. Friend Function & Class
+### 04. Access Control
+* Private inheritance
+* Public, protected, and private access control in inheritance
+
+### 05. Friend Function & Class
 * Friend functions
 * Friend functions with multiple classes
 * Friend classes
 
-### 05. Functions & Overloading
+### 06. Functions & Overloading
 * Function overloading
 * Default arguments
 
-### 06. Inheritance
+### 07. Inheritance
 * Basic inheritance
 * Inherited members
 * Public and protected inheritance
 * Multilevel inheritance
 * Multiple inheritance
-* Polymorphism with virtual functions
 
-### 07. Inheritance Constructors
+### 08. Inheritance Constructors
 * Constructors in derived classes
 * Constructor initialization in inheritance
 
-### 08. Virtual Inheritance
+### 09. Polymorphism
+* Runtime polymorphism
+* Virtual functions
+* Function overriding through base-class pointers
+
+### 10. Abstraction
+* Abstract classes
+* Pure virtual functions
+* Hiding implementation details behind an interface
+
+### 11. Virtual Inheritance
 * Virtual inheritance
 * Diamond problem
+* Resolving shared base-class inheritance
 
-### 09. Operator Overloading
+### 12. Operator Overloading
 * Overloading operators for user-defined classes
 * Operator overloading with friend functions
 
-### 10. Namespace
+### 13. Namespace
 * Creating and using namespaces
 * Avoiding naming conflicts
 
-### 11. STL Vector
+### 14. STL Vector
 * Vector basics
 * Common vector member functions
 
-### 12. Real-World Practice
+### 15. Real-World Practice
 * Employee salary calculation
 * Grocery-related class and object practice
 
-### 13. File Handling
+### 16. File Handling
 * Writing data to a file
 * Reading data from a file
 
-### 14. Template Class
+### 17. Template Class
 * Basic class templates
 * Using the same class structure with different data types
 
@@ -105,12 +119,13 @@ The folders inside [C++ Codes](C%2B%2B%20Codes) are arranged in a beginner-frien
 * Classes & Objects
 * Constructors & Destructors
 * Encapsulation
-* Abstraction
+* Access Control
+* Friend Functions & Friend Classes
 * Inheritance
 * Polymorphism
+* Abstraction
 * Function Overloading
 * Operator Overloading
-* Friend Functions & Friend Classes
 * Multiple Inheritance
 * Virtual Inheritance
 * Diamond Problem
@@ -148,7 +163,6 @@ The [C++ Lab Report](C%2B%2B%20Lab%20Report) folder contains related lab reports
 * Modular Programming
 * Problem Solving
 * Logical Thinking
-* C++ Syntax & Memory Basics
 * Code Organization & Readability
 
 ---
@@ -176,11 +190,13 @@ For learning, it is recommended to follow the numbered folders in order.
 
 1. Start with **Classes & Objects**.
 2. Move to **Constructors & Destructors**.
-3. Continue through **Encapsulation, Friend Functions, and Functions**.
-4. Study the different types of **Inheritance** before moving to polymorphism.
-5. Continue with **Virtual Inheritance, Operator Overloading, Namespace, and STL Vector**.
-6. Finish with **Real-World Practice, File Handling, and Template Class**.
-7. Use the **Assignments** and **Exam Questions** folders for additional practice.
+3. Study **Encapsulation** and **Access Control**.
+4. Continue through **Friend Functions & Classes** and **Functions & Overloading**.
+5. Study the different types of **Inheritance** and **Inheritance Constructors**.
+6. Move to **Polymorphism** and **Abstraction**.
+7. Continue with **Virtual Inheritance, Operator Overloading, Namespace, and STL Vector**.
+8. Finish with **Real-World Practice, File Handling, and Template Class**.
+9. Use the **Assignments** and **Exam Questions** folders for additional practice.
 
 Each source file is kept as a separate example so that individual concepts can be studied, compiled, and practiced independently.
 
