@@ -1,242 +1,120 @@
-# Object Oriented Programming in C++
-
+# Object-Oriented Programming in C++
 
 <p align="center">
-
-  <img src="https://img.shields.io/badge/Object%20Oriented%20Programming-000000?style=for-the-badge" />
-  
-  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" />
-
+  <img src="https://img.shields.io/badge/Language-C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++ language" />
+  <img src="https://img.shields.io/badge/Compiler-G%2B%2B-323330?style=for-the-badge&logo=gnu&logoColor=white" alt="G++ compiler" />
   <a href="https://www.hackerrank.com/profile/rezwanahmedtorab">
-    <img src="https://img.shields.io/badge/HackerRank-Profile-2EC866?style=for-the-badge&logo=hackerrank&logoColor=white" />
+    <img src="https://img.shields.io/badge/HackerRank-Profile-2EC866?style=for-the-badge&logo=hackerrank&logoColor=white" alt="HackerRank profile" />
   </a>
-
 </p>
-
 
 <p align="center">
-  A collection of Object-Oriented Programming (OOP) concepts and practice codes implemented in C++ throughout my Computer Science & Engineering learning journey.
+  Beginner-friendly C++ examples organized by topic and learning progression, with separate sections for assignments, exam questions, and lab reports.
 </p>
 
----
+## Overview
 
-# About The Repository
+This repository documents my ongoing practice with Object-Oriented Programming (OOP) in C++ as part of my Computer Science and Engineering studies. It contains focused examples for learning core OOP concepts, exploring how they work in code, and practicing problem-solving.
 
-This repository contains C++ programs, assignments, exam questions, and practice examples focused on Object-Oriented Programming.
+The numbered folders in `C++ Codes` follow a learning sequence from classes and objects to inheritance, polymorphism, file handling, and class templates. Course assignments, exam questions, and lab reports are kept in separate locations.
 
-The repository is organized as a learning roadmap, starting with classes and objects and gradually moving through constructors, encapsulation, access control, inheritance, polymorphism, abstraction, operator overloading, STL, file handling, and template classes.
+## Repository Structure
 
-The main purpose of this repository is to strengthen my understanding of OOP principles, improve coding practices, and develop problem-solving skills using C++.
+| Folder | Topics |
+|---|---|
+| [01_Classes_and_Objects](C%2B%2B%20Codes/01_Classes_and_Objects) | Classes, objects, and arrays of objects |
+| [02_Constructors_and_Destructors](C%2B%2B%20Codes/02_Constructors_and_Destructors) | Constructors, constructor overloading, and object lifetime |
+| [03_Encapsulation](C%2B%2B%20Codes/03_Encapsulation) | Data hiding and member-function access |
+| [04_Access_Control](C%2B%2B%20Codes/04_Access_Control) | Access specifiers and inheritance access |
+| [05_Friend_Function_and_Class](C%2B%2B%20Codes/05_Friend_Function_and_Class) | Friend functions and friend classes |
+| [06_Functions_and_Overloading](C%2B%2B%20Codes/06_Functions_and_Overloading) | Function overloading and default arguments |
+| [07_Inheritance](C%2B%2B%20Codes/07_Inheritance) | Basic, multilevel, and multiple inheritance |
+| [08_Inheritance_Constructors](C%2B%2B%20Codes/08_Inheritance_Constructors) | Constructors in derived classes |
+| [09_Polymorphism](C%2B%2B%20Codes/09_Polymorphism) | Runtime polymorphism and virtual functions |
+| [10_Abstraction](C%2B%2B%20Codes/10_Abstraction) | Abstract classes and pure virtual functions |
+| [11_Virtual_Inheritance](C%2B%2B%20Codes/11_Virtual_Inheritance) | Virtual inheritance and the diamond problem |
+| [12_Operator_Overloading](C%2B%2B%20Codes/12_Operator_Overloading) | Operator overloading, including friend functions |
+| [13_Namespace](C%2B%2B%20Codes/13_Namespace) | Namespaces and naming conflicts |
+| [14_STL_Vector](C%2B%2B%20Codes/14_STL_Vector) | Vector basics and member functions |
+| [15_Real_World_Practice](C%2B%2B%20Codes/15_Real_World_Practice) | Small employee-salary and grocery-related examples |
+| [16_File_Handling](C%2B%2B%20Codes/16_File_Handling) | Writing to and reading from files |
+| [17_Template_Class](C%2B%2B%20Codes/17_Template_Class) | Basic class templates |
+| [Assignments](C%2B%2B%20Codes/Assignments) | Course-related assignment programs |
+| [Exam_Questions](C%2B%2B%20Codes/Exam_Questions) | OOP questions practiced from examinations |
+| [C++ Lab Report](C%2B%2B%20Lab%20Report) | Related C++ lab reports |
 
----
+## Key Concepts
 
-# Learning Roadmap
+- **Classes and objects:** defining classes, creating objects, and organizing data with member functions
+- **Constructors and destructors:** object initialization, constructor overloading, and destruction order
+- **Encapsulation and access control:** data hiding and access rules
+- **Inheritance:** reusing class behavior through different inheritance relationships
+- **Polymorphism and abstraction:** virtual functions, abstract classes, and pure virtual functions
+- **Operator overloading:** defining operators for user-defined types
+- **C++ features:** namespaces, STL vectors, and class templates
+- **File handling:** basic file input and output
 
-The folders inside [C++ Codes](C%2B%2B%20Codes) are arranged in a beginner-friendly sequence so that the concepts can be studied step by step.
+## Getting Started
 
-### 01. Classes & Objects
-* Creating classes and objects
-* Array of objects
-* Using classes to model simple data
+### Requirements
 
-### 02. Constructors & Destructors
-* Constructors
-* Constructor overloading
-* Constructor and destructor order
+- A C++ compiler such as [G++](https://gcc.gnu.org/)
+- A code editor or IDE (VS Code is one option)
 
-### 03. Encapsulation
-* Private data members
-* Data access through public member functions
-* Basic data hiding
+### Compile and Run
 
-### 04. Access Control
-* Private inheritance
-* Public, protected, and private access control in inheritance
+Open a terminal at the repository root. For example, compile a source file with G++:
 
-### 05. Friend Function & Class
-* Friend functions
-* Friend functions with multiple classes
-* Friend classes
+```bash
+g++ -std=c++17 "C++ Codes/01_Classes_and_Objects/01_Array_of_Objects.cpp" -o example
+```
 
-### 06. Functions & Overloading
-* Function overloading
-* Default arguments
+Run on Linux or macOS:
 
-### 07. Inheritance
-* Basic inheritance
-* Inherited members
-* Public and protected inheritance
-* Multilevel inheritance
-* Multiple inheritance
+```bash
+./example
+```
 
-### 08. Inheritance Constructors
-* Constructors in derived classes
-* Constructor initialization in inheritance
+On Windows PowerShell:
 
-### 09. Polymorphism
-* Runtime polymorphism
-* Virtual functions
-* Function overriding through base-class pointers
+```powershell
+.\example.exe
+```
 
-### 10. Abstraction
-* Abstract classes
-* Pure virtual functions
-* Hiding implementation details behind an interface
+Replace the source path and output name with the program you want to run. Each example can generally be explored as a separate program; compile one source file at a time.
 
-### 11. Virtual Inheritance
-* Virtual inheritance
-* Diamond problem
-* Resolving shared base-class inheritance
+## How to Use This Repository
 
-### 12. Operator Overloading
-* Overloading operators for user-defined classes
-* Operator overloading with friend functions
+1. Start with **Classes and Objects**.
+2. Continue through **Constructors and Destructors**, **Encapsulation**, and **Access Control**.
+3. Study **Friend Functions and Classes**, then **Functions and Overloading**.
+4. Learn the different forms of **Inheritance** and how constructors work with inheritance.
+5. Move on to **Polymorphism**, **Abstraction**, and **Virtual Inheritance**.
+6. Explore **Operator Overloading**, **Namespaces**, and **STL Vectors**.
+7. Finish the topic sequence with **Real-World Practice**, **File Handling**, and **Template Classes**.
+8. Use **Assignments** and **Exam Questions** for additional course practice.
 
-### 13. Namespace
-* Creating and using namespaces
-* Avoiding naming conflicts
+## Related Repositories
 
-### 14. STL Vector
-* Vector basics
-* Common vector member functions
+- **DSA:** [DSA-1](https://github.com/rezwan-ahmed-l7/DSA-1)
+- **Problem Solving:** [Problem-Solving](https://github.com/rezwan-ahmed-l7/Problem-Solving)
 
-### 15. Real-World Practice
-* Employee salary calculation
-* Grocery-related class and object practice
+## Tools Used
 
-### 16. File Handling
-* Writing data to a file
-* Reading data from a file
+| Technology | Purpose |
+|---|---|
+| C++ | Programming language |
+| GCC / G++ | Compilation |
+| VS Code | Development environment |
 
-### 17. Template Class
-* Basic class templates
-* Using the same class structure with different data types
+## Author
 
----
+**Rezwan Ahmed**  
+Computer Science & Engineering Student | Aspiring Software Engineer
 
-# Topics Covered
-
-* Classes & Objects
-* Constructors & Destructors
-* Encapsulation
-* Access Control
-* Friend Functions & Friend Classes
-* Inheritance
-* Polymorphism
-* Abstraction
-* Function Overloading
-* Operator Overloading
-* Multiple Inheritance
-* Virtual Inheritance
-* Diamond Problem
-* Namespace
-* STL Vector
-* File Handling Basics
-* Template Class
-* Problem Solving Practice
+- [GitHub](https://github.com/rezwan-ahmed-l7)
+- [HackerRank](https://www.hackerrank.com/profile/rezwanahmedtorab)
 
 ---
 
-# Practice Sections
-
-### Assignments
-
-The [Assignments](C%2B%2B%20Codes/Assignments) folder contains course-related assignment programs.
-
-### Exam Questions
-
-The [Exam Questions](C%2B%2B%20Codes/Exam_Questions) folder contains OOP problems practiced from examinations.
-
-### Lab Reports
-
-The [C++ Lab Report](C%2B%2B%20Lab%20Report) folder contains related lab reports.
-
----
-
-# Concepts Practiced
-
-* Object-Oriented Design
-* Code Reusability
-* Encapsulation
-* Inheritance Relationships
-* Runtime Polymorphism
-* Modular Programming
-* Problem Solving
-* Logical Thinking
-* Code Organization & Readability
-
----
-
-# C++ Related Repositories
-
-- **DSA :**  [DSA-1](https://github.com/rezwan-ahmed-l7/DSA-1)
-- **Problem Solving :**  [Problem-Solving](https://github.com/rezwan-ahmed-l7/Problem-Solving)
-
----
-
-# Tools Used
-
-| Technology | Purpose                   |
-| ---------- | ------------------------- |
-| C++        | Core Programming Language |
-| GCC / G++  | Compilation               |
-| VS Code    | Development Environment   |
-
----
-
-# How To Use This Repository
-
-For learning, it is recommended to follow the numbered folders in order.
-
-1. Start with **Classes & Objects**.
-2. Move to **Constructors & Destructors**.
-3. Study **Encapsulation** and **Access Control**.
-4. Continue through **Friend Functions & Classes** and **Functions & Overloading**.
-5. Study the different types of **Inheritance** and **Inheritance Constructors**.
-6. Move to **Polymorphism** and **Abstraction**.
-7. Continue with **Virtual Inheritance, Operator Overloading, Namespace, and STL Vector**.
-8. Finish with **Real-World Practice, File Handling, and Template Class**.
-9. Use the **Assignments** and **Exam Questions** folders for additional practice.
-
-Each source file is kept as a separate example so that individual concepts can be studied, compiled, and practiced independently.
-
----
-
-# Learning Outcomes
-
-This repository helped me improve my understanding of:
-
-* Core OOP Concepts
-* Writing Structured C++ Programs
-* Problem Solving Techniques
-* Debugging & Error Handling
-* Code Organization & Readability
-* Applying OOP concepts through small practical programs
-
----
-
-# Challenges Faced
-
-* Understanding inheritance relationships
-* Managing object interactions
-* Understanding runtime polymorphism
-* Working with operator overloading
-* Understanding access control in inheritance
-* Debugging logic and syntax errors
-
----
-
-# Author
-
-### Rezwan Ahmed
-
-B.Sc Engg in CSE Student | Aspiring Software Engineer
-
----
-
-## Note
-
-🌱 This repository is part of my learning journey as a CSE student. 
-The codes, assignments, and reports are shared for educational purposes and may be useful for students who are learning similar concepts.
-
-If you found this repository useful, consider giving it a ⭐, Thank you.
+*This repository is part of my ongoing C++ learning journey. The examples and course materials are shared for educational practice; feedback and suggestions are welcome.*
