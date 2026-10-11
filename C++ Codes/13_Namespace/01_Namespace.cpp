@@ -1,29 +1,26 @@
 #include <iostream>
 using namespace std;
 
-namespace myspace {
-
-    class myclass {
+namespace myspace
+{
+    class myclass
+    {
     public:
-        void display( ) {
-            cout << "Inside myNspace" << endl;
-        }
+        void display() const { cout << "Inside myspace::myclass\n"; }
     };
 }
 
-class myclass {
+class myclass
+{
 public:
-    void display( ) {
-        cout << "Inside myclass" << endl;
-    }
+    void display() const { cout << "Inside global myclass\n"; }
 };
 
-int main( ) {
-    myspace::myclass obj1;
-    myclass obj2;
-
-    obj1.display( );
-    obj2.display( );
-
+int main()
+{
+    const myspace::myclass namespacedObject;
+    const myclass globalObject;
+    namespacedObject.display();
+    globalObject.display();
     return 0;
 }
