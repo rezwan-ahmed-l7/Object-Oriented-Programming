@@ -4,46 +4,47 @@ using namespace std;
 class Complex
 {
 public:
-    int real;
-    int imag;
+    int real{};
+    int imag{};
 };
 
-Complex add(Complex c1, Complex c2)
+Complex add(const Complex &first, const Complex &second)
 {
-    Complex temp;
-    temp.real = c1.real + c2.real;
-    temp.imag = c1.imag + c2.imag;
-    return temp;
+    return {first.real + second.real, first.imag + second.imag};
 }
 
-Complex sub(Complex c1, Complex c2)
+Complex subtract(const Complex &first, const Complex &second)
 {
-    Complex temp;
-    temp.real = c1.real - c2.real;
-    temp.imag = c1.imag - c2.imag;
-    return temp;
+    return {first.real - second.real, first.imag - second.imag};
+}
+
+void display(const char *label, const Complex &number)
+{
+    cout << label << number.real;
+    if (number.imag >= 0)
+        cout << " + " << number.imag << 'i';
+    else
+        cout << " - " << -number.imag << 'i';
+    cout << '\n';
 }
 
 int main()
 {
-    Complex c1, c2, sum, diff;
-    int a1, b1, a2, b2;
+    Complex first, second;
+    cout << "Enter real and imaginary parts of the first complex number: ";
+    if (!(cin >> first.real >> first.imag))
+    {
+        cerr << "Error: invalid first complex number.\n";
+        return 1;
+    }
+    cout << "Enter real and imaginary parts of the second complex number: ";
+    if (!(cin >> second.real >> second.imag))
+    {
+        cerr << "Error: invalid second complex number.\n";
+        return 1;
+    }
 
-    cout << "Taking input of 1st complex number: ";
-    cin >> a1 >> b1;
-    cout << "Now for 2nd complex number: ";
-    cin >> a2 >> b2;
-
-    c1.real = a1;
-    c1.imag = b1;
-    c2.real = a2;
-    c2.imag = b2;
-
-    sum = add(c1, c2);
-    diff = sub(c1, c2);
-
-    cout << "\nSum: " << sum.real << " + " << sum.imag << "i" << endl;
-    cout << "Difference: " << diff.real << " + " << diff.imag << "i" << endl;
-
+    display("Sum: ", add(first, second));
+    display("Difference: ", subtract(first, second));
     return 0;
 }
