@@ -1,31 +1,43 @@
 #include <iostream>
 using namespace std;
 
-class base {
-protected :
-    int a, b;
+class Base
+{
+protected:
+    int a{};
+    int b{};
 
-public :
-    void setab (int n, int m){
-    a = n;
-    b = m;
+public:
+    void setAB(int first, int second)
+    {
+        a = first;
+        b = second;
     }
 };
 
-class derived : protected base {
-    int c;
+class Derived : protected Base
+{
+private:
+    int c{};
 
-public :
-    void setc(int n){c = n;}
-    void showabc ( ){
-    cout << a << b << c;
+public:
+    void setValues(int first, int second, int third)
+    {
+        setAB(first, second);
+        c = third;
+    }
+
+    void showABC() const
+    {
+        cout << "a = " << a << ", b = " << b << ", c = " << c << '\n';
     }
 };
 
-int main ( ){
-    derived obj;
-   //obj.setab (1,2);  //It cant be accessed because it is inherited in protected
-    obj.setc (3);
-    obj.showabc ( );
+int main()
+{
+    Derived object;
+    object.setValues(1, 2, 3);
+    object.showABC();
+    // setAB() is inaccessible through Derived in main because inheritance is protected.
     return 0;
 }
