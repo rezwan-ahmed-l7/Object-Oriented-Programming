@@ -1,17 +1,18 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Student
 {
 private:
-    int roll;
+    int roll{};
     string name;
 
 public:
-    void setData(int r, string n)
+    void setData(int studentRoll, string studentName)
     {
-        roll = r;
-        name = n;
+        roll = studentRoll;
+        name = studentName;
     }
 
     friend class Result;
@@ -20,20 +21,18 @@ public:
 class Result
 {
 public:
-    void show(Student s)
+    void show(const Student &student) const
     {
-        cout << "Roll: " << s.roll << endl;
-        cout << "Name: " << s.name << endl;
+        cout << "Roll: " << student.roll << '\n';
+        cout << "Name: " << student.name << '\n';
     }
 };
 
 int main()
 {
-    Student s1;
-    s1.setData(24, "Rizen");
-
-    Result r;
-    r.show(s1);
-
+    Student student;
+    student.setData(24, "Rizen");
+    const Result result;
+    result.show(student);
     return 0;
 }
