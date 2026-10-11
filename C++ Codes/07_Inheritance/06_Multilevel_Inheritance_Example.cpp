@@ -3,75 +3,42 @@ using namespace std;
 
 class A
 {
+private:
     int x;
 
 public:
-    A(int a)
-    {
-        cout << "Constructing A" << endl;
-        x = a;
-    }
-
-    ~A()
-    {
-        cout << "Destructing A" << endl;
-    }
-
-    void showX()
-    {
-        cout << x << endl;
-    }
+    explicit A(int value) : x(value) { cout << "Constructing A\n"; }
+    ~A() { cout << "Destructing A\n"; }
+    void showX() const { cout << "x = " << x << '\n'; }
 };
 
 class B : public A
 {
+private:
     int y;
 
 public:
-    B(int a, int b) : A(a)
-    {
-        cout << "Constructing B" << endl;
-        y = a;
-    }
-
-    ~B()
-    {
-        cout << "Destructing B" << endl;
-    }
-
-    void showY()
-    {
-        cout << y << endl;
-    }
+    B(int a, int b) : A(a), y(b) { cout << "Constructing B\n"; }
+    ~B() { cout << "Destructing B\n"; }
+    void showY() const { cout << "y = " << y << '\n'; }
 };
 
 class C : public B
 {
+private:
     int z;
 
 public:
-    C(int a, int b, int c) : B(a, b)
-    {
-        cout << "Constructing C" << endl;
-        z = b;
-    }
-
-    ~C()
-    {
-        cout << "Destructing C" << endl;
-    }
-
-    void showZ()
-    {
-        cout << z << endl;
-    }
+    C(int a, int b, int c) : B(a, b), z(c) { cout << "Constructing C\n"; }
+    ~C() { cout << "Destructing C\n"; }
+    void showZ() const { cout << "z = " << z << '\n'; }
 };
 
 int main()
 {
-    C obj(1, 2, 3);
-    obj.showX();
-    obj.showY();
-    obj.showZ();
+    const C object(1, 2, 3);
+    object.showX();
+    object.showY();
+    object.showZ();
     return 0;
 }
