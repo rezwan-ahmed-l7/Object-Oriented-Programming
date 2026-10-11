@@ -1,63 +1,61 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-class Person {
+class Person
+{
 private:
     string name;
-    int age;
+    int age{};
 
 public:
-    void setPerson(string n, int a) {
-        name = n;
-        age = a;
+    void setPerson(const string &personName, int personAge)
+    {
+        name = personName;
+        age = personAge;
     }
 
-    void showPerson( ) {
-        cout << "Name: " << name << endl;
-        cout << "Age: " << age << endl;
+    void showPerson() const
+    {
+        cout << "Name: " << name << '\n';
+        cout << "Age: " << age << '\n';
     }
 };
 
-class Student : public Person {
+class Student : public Person
+{
 protected:
-    int rollNumber;
+    int rollNumber{};
 
 public:
-    void setStudent(int r) {
-        rollNumber = r;
-    }
-
-    void showStudent( ) {
-        cout << "Roll Number: " << rollNumber << endl;
-    }
+    void setStudent(int roll) { rollNumber = roll; }
+    void showStudent() const { cout << "Roll Number: " << rollNumber << '\n'; }
 };
 
-class GraduateStudent : public Student {
+class GraduateStudent : public Student
+{
 private:
     string researchTopic;
 
 public:
-    void setGraduateStudent(string topic) {
-        researchTopic = topic;
-    }
+    void setGraduateStudent(const string &topic) { researchTopic = topic; }
 
-    void showGraduateStudent( ) {
-        showPerson( );
-        showStudent( );
-        cout << "Research Topic: " << researchTopic << endl;
+    void showGraduateStudent() const
+    {
+        showPerson();
+        showStudent();
+        cout << "Research Topic: " << researchTopic << '\n';
     }
 };
 
-int main( ) {
-    GraduateStudent gs;
+int main()
+{
+    GraduateStudent student;
+    student.setPerson("Rezwan", 20);
+    student.setStudent(102);
+    student.setGraduateStudent("Software Engineering");
 
-    gs.setPerson("Rezwan", 20);
-    gs.setStudent(102);
-    gs.setGraduateStudent("Software Engineering");
-
-    cout << "Graduate Student Information" << endl << endl;
-    gs.showGraduateStudent( );
-
+    cout << "Graduate Student Information\n\n";
+    student.showGraduateStudent();
     return 0;
 }
-
