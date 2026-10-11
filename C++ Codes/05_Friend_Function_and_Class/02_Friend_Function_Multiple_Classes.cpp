@@ -1,61 +1,47 @@
 #include <iostream>
+#include <string>
 using namespace std;
+
 class Teacher;
 
 class Student
 {
 private:
-    double id;
     int age;
-    float cgpa;
 
 public:
-    Student(double i, int a, float c)
-    {
-        id = i;
-        age = a;
-        cgpa = c;
-    }
-
-    friend int compare(Student s, Teacher t);
+    explicit Student(int studentAge) : age(studentAge) {}
+    friend int compare(const Student &student, const Teacher &teacher);
 };
 
 class Teacher
 {
 private:
-    string department;
     int age;
-    char ranked;
+    string department;
 
 public:
-    Teacher(string d, int a, char r)
-    {
-        department = d;
-        age = a;
-        ranked = r;
-    }
-
-    friend int compare(Student s, Teacher t);
+    Teacher(string teacherDepartment, int teacherAge)
+        : age(teacherAge), department(teacherDepartment) {}
+    friend int compare(const Student &student, const Teacher &teacher);
 };
 
-int compare(Student s, Teacher t)
+int compare(const Student &student, const Teacher &teacher)
 {
-    return t.age - s.age;
+    return teacher.age - student.age;
 }
 
 int main()
 {
-    int difference;
-    Student s(1002, 22, 3.50);
-    Teacher t("Math", 45, 'A');
-    difference = compare(s, t);
+    const Student student(22);
+    const Teacher teacher("Math", 45);
+    const int difference = compare(student, teacher);
 
     if (difference > 0)
-        cout << "Teacher is older" << endl;
+        cout << "Teacher is older by " << difference << " years.\n";
     else if (difference == 0)
-        cout << " The age of teacher and student is same" << endl;
+        cout << "Teacher and student are the same age.\n";
     else
-        cout << " Student is older" << endl;
-
+        cout << "Student is older by " << -difference << " years.\n";
     return 0;
 }
