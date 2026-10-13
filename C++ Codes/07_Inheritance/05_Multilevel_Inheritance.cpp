@@ -1,94 +1,104 @@
 #include <iostream>
+#include <iomanip>
+#include <stdexcept>
 using namespace std;
 
 class Account
 {
-
 protected:
     double balance;
 
 public:
-    Account(double b = 0)
+    explicit Account(double initialBalance = 0.0) : balance(initialBalance)
     {
-        balance = b;
+        if (initialBalance < 0.0)
+            throw invalid_argument("Initial balance cannot be negative.");
     }
 
     void deposit(double amount)
     {
+        if (amount <= 0.0)
+        {
+            cout << "Deposit amount must be positive.\n";
+            return;
+        }
         balance += amount;
-        cout << "Deposited: " << amount << endl;
+        cout << "Deposited: " << amount << '\n';
     }
 
     void withdraw(double amount)
     {
-        if (amount <= balance)
+        if (amount <= 0.0)
         {
-            balance -= amount;
-            cout << "Withdrawn: " << amount << endl;
+            cout << "Withdrawal amount must be positive.\n";
+            return;
         }
-
-        else
+        if (amount > balance)
         {
-            cout << "Insufficient balance !" << endl;
+            cout << "Insufficient balance!\n";
+            return;
         }
+        balance -= amount;
+        cout << "Withdrawn: " << amount << '\n';
     }
 
-    double getBalance()
-    {
-        return balance;
-    }
+    double getBalance() const { return balance; }
 };
 
 class SavingsAccount : public Account
 {
-
 protected:
     double interestRate;
 
 public:
-    SavingsAccount(double b = 0, double rate = 0.10) : Account(b)
+    SavingsAccount(double initialBalance = 0.0, double rate = 0.10)
+        : Account(initialBalance), interestRate(rate)
     {
-        interestRate = rate;
+        if (rate < 0.0)
+            throw invalid_argument("Interest rate cannot be negative.");
     }
 
-    double calculateInterest()
-    {
-        return balance * interestRate;
-    }
+    double calculateInterest() const { return balance * interestRate; }
 };
 
 class PremiumSavings : public SavingsAccount
 {
-
 private:
     double bonusAmount;
 
 public:
-    PremiumSavings(double b = 0, double rate = 0.10, double bonus = 100)
+    PremiumSavings(double initialBalance = 0.0, double rate = 0.10, double bonus = 100.0)
+        : SavingsAccount(initialBalance, rate), bonusAmount(bonus)
     {
-        balance = b;
-        interestRate = rate;
-        bonusAmount = bonus;
+        if (bonus < 0.0)
+            throw invalid_argument("Bonus amount cannot be negative.");
     }
 
-    void displayTotalSavings()
+    void displayTotalSavings() const
     {
-
-        double interest = calculateInterest();
-        double total = getBalance() + interest + bonusAmount;
-        cout << "\nBalance: " << getBalance() << endl;
-        cout << "Interest: " << interest << endl;
-        cout << "Bonus: " << bonusAmount << endl;
-        cout << "Total Savings: " << total << endl;
+        const double interest = calculateInterest();
+        const double total = getBalance() + interest + bonusAmount;
+        cout << fixed << setprecision(2);
+        cout << "\nBalance: " << getBalance() << '\n';
+        cout << "Interest: " << interest << '\n';
+        cout << "Bonus: " << bonusAmount << '\n';
+        cout << "Total Savings: " << total << '\n';
     }
 };
 
 int main()
 {
-
-    PremiumSavings ps(8000, 0.10, 500);
-    ps.deposit(1000);
-    ps.withdraw(500);
-    ps.displayTotalSavings();
+    try
+    {
+        PremiumSavings savings(8000, 0.10, 500);
+        savings.deposit(1000);
+        savings.withdraw(500);
+        savings.displayTotalSavings();
+    }
+    catch (const invalid_argument &error)
+    {
+        cerr << "Error: " << error.what() << '\n';
+        return 1;
+    }
     return 0;
 }

@@ -5,84 +5,77 @@ using namespace std;
 class BankAccount
 {
 protected:
-	string account_holder;
-	double balance;
+    string account_holder;
+    double balance;
 
 public:
-	BankAccount(string n, double b)
-	{
-		balance = b;
-		account_holder = n;
-	}
+    BankAccount(string name, double initialBalance)
+        : account_holder(name), balance(initialBalance < 0.0 ? 0.0 : initialBalance) {}
 
-	string getName()
-	{
-		return account_holder;
-	}
+    string getName() const { return account_holder; }
+    double getBalance() const { return balance; }
 
-	double getBalance()
-	{
-		return balance;
-	}
-
-	void setBalance(double b)
-	{
-		balance = b;
-	}
+    void setBalance(double newBalance)
+    {
+        if (newBalance >= 0.0)
+            balance = newBalance;
+    }
 };
 
-void transfer(BankAccount obj[], int size, string n1, string n2, double a)
+void transfer(BankAccount accounts[], int size, const string &senderName,
+              const string &receiverName, double amount)
 {
-	int sender = -1, receiver = -1;
+    if (amount <= 0.0)
+    {
+        cout << "Error: Transfer amount must be positive!\n";
+        return;
+    }
+    if (senderName == receiverName)
+    {
+        cout << "Error: Sender and receiver must be different accounts!\n";
+        return;
+    }
 
-	for (int i = 0; i < size; i++)
-	{
-		if (obj[i].getName() == n1)
-		{
-			sender = i;
-			break;
-		}
-	}
+    int sender = -1;
+    int receiver = -1;
+    for (int i = 0; i < size; ++i)
+    {
+        if (accounts[i].getName() == senderName)
+            sender = i;
+        if (accounts[i].getName() == receiverName)
+            receiver = i;
+    }
 
-	for (int i = 0; i < size; i++)
-	{
-		if (obj[i].getName() == n2)
-		{
-			receiver = i;
-			break;
-		}
-	}
+    if (sender == -1 || receiver == -1)
+    {
+        cout << "Error: Account not found!\n";
+        return;
+    }
+    if (accounts[sender].getBalance() < amount)
+    {
+        cout << "Error: Insufficient balance!\n";
+        return;
+    }
 
-	if (sender == -1 || receiver == -1)
-	{
-		cout << "Error: Account not found!" << endl;
-		return;
-	}
+    accounts[sender].setBalance(accounts[sender].getBalance() - amount);
+    accounts[receiver].setBalance(accounts[receiver].getBalance() + amount);
 
-	if (obj[sender].getBalance() < a)
-	{
-		cout << "Error: Insufficient balance!" << endl;
-		return;
-	}
-
-	obj[receiver].setBalance(obj[receiver].getBalance() + a);
-	obj[sender].setBalance(obj[sender].getBalance() - a);
-
-	cout << "Transfer successful!" << endl;
-	cout << "Sender: " << obj[sender].getName() << " - New balance: " << obj[sender].getBalance() << endl;
-	cout << "Receiver: " << obj[receiver].getName() << " - New balance: " << obj[receiver].getBalance() << endl;
+    cout << "Transfer successful!\n";
+    cout << "Sender: " << accounts[sender].getName()
+         << " - New balance: " << accounts[sender].getBalance() << '\n';
+    cout << "Receiver: " << accounts[receiver].getName()
+         << " - New balance: " << accounts[receiver].getBalance() << '\n';
 }
 
 int main()
 {
-	BankAccount accounts[] = {
-		BankAccount("John", 1000),
-		BankAccount("Alice", 500),
-		BankAccount("Bob", 750)};
+    BankAccount accounts[] = {
+        BankAccount("John", 1000),
+        BankAccount("Alice", 500),
+        BankAccount("Bob", 750)};
+    const int size = static_cast<int>(sizeof(accounts) / sizeof(accounts[0]));
 
-	int size = sizeof(accounts) / sizeof(accounts[0]);
-
-	transfer(accounts, size, "John", "Alice", 200);
-
-	return 0;
+    transfer(accounts, size, "John", "Alice", 200);
+    transfer(accounts, size, "John", "Bob", -50);
+    return 0;
 }

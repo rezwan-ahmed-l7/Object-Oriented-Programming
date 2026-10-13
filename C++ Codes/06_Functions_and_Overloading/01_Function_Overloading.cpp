@@ -1,19 +1,19 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 void add(int a, int b)
 {
-	cout << a + b << endl;
+    cout << a + b << '\n';
 }
 
 void add(int a, int b, int c)
 {
-	cout << a + b + c << endl;
+    cout << a + b + c << '\n';
 }
 
 int main()
 {
-	add(10, 20);
-	add(12, 22, 33);
-	return 0;
+    add(10, 20);
+    add(12, 22, 33);
+    return 0;
 }

@@ -1,38 +1,36 @@
-// Creative programming
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Employee
 {
 private:
-	string unite;
-	double id;
-	string name;
-	int age;
+    string unit;
+    int id;
+    string name;
+    int age;
 
 public:
-	// constructor
-	Employee(string n, int a, double i, string u)
-	{
-		unite = u;
-		id = i;
-		name = n;
-		age = a;
-	}
+    Employee(string employeeName, int employeeAge, int employeeId, string employeeUnit)
+        : unit(employeeUnit), id(employeeId), name(employeeName), age(employeeAge)
+    {
+        cout << "Employee object created.\n";
+    }
 
-	// destructor - FIXED
-	~Employee()
-	{
-		cout << "Employee data is deleted." << endl;
-	}
+    void display() const
+    {
+        cout << "Name: " << name << '\n';
+        cout << "Age: " << age << '\n';
+        cout << "ID: " << id << '\n';
+        cout << "Unit: " << unit << '\n';
+    }
+
+    ~Employee() { cout << "Employee object destroyed.\n"; }
 };
 
-// ADD THE MAIN FUNCTION
 int main()
 {
-	Employee emp("John Doe", 25, 101, "IT");
-	cout << "Employee object created successfully!" << endl;
-
-	// Destructor will be called automatically when program ends
-	return 0;
+    const Employee employee("John Doe", 25, 101, "IT");
+    employee.display();
+    return 0;
 }

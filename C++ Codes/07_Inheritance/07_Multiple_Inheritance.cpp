@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
 using namespace std;
 
@@ -10,16 +11,17 @@ protected:
 public:
     int stockCount;
 
-    InventoryTracker(string id)
-    {
-        inventoryID = id;
-        stockCount = 0;
-    }
+    explicit InventoryTracker(string id) : inventoryID(id), stockCount(0) {}
 
     void logShipment(int quantity)
     {
+        if (quantity <= 0)
+        {
+            cout << "Shipment quantity must be positive.\n";
+            return;
+        }
         stockCount += quantity;
-        cout << "Shipped " << quantity << " items for Inventory ID: " << inventoryID << "." << endl;
+        cout << "Shipped " << quantity << " items for Inventory ID: " << inventoryID << ".\n";
     }
 };
 
@@ -31,16 +33,17 @@ protected:
 public:
     double unitPrice;
 
-    SalesRecord(string id)
-    {
-        salesID = id;
-        unitPrice = 10.0;
-    }
+    explicit SalesRecord(string id) : salesID(id), unitPrice(10.0) {}
 
     void applyDiscount(double percentage)
     {
-        unitPrice -= unitPrice * (percentage / 100);
-        cout << "Discount applied. New price: " << unitPrice << endl;
+        if (percentage < 0.0 || percentage > 100.0)
+        {
+            cout << "Discount must be between 0 and 100 percent.\n";
+            return;
+        }
+        unitPrice -= unitPrice * (percentage / 100.0);
+        cout << fixed << setprecision(2) << "Discount applied. New price: " << unitPrice << '\n';
     }
 };
 
@@ -50,35 +53,35 @@ private:
     string productName;
 
 public:
-    SpecializedWidget(string name, string inventoryID, string salesID)
-        : InventoryTracker(inventoryID), SalesRecord(salesID)
-    {
-        productName = name;
-    }
+    SpecializedWidget(string name, string inventoryId, string salesId)
+        : InventoryTracker(inventoryId), SalesRecord(salesId), productName(name) {}
 
     void fullSetup(int initialStock)
     {
+        if (initialStock < 0)
+        {
+            cout << "Initial stock cannot be negative.\n";
+            return;
+        }
         stockCount = initialStock;
         applyDiscount(15.0);
     }
 
-    void printDetails()
+    void printDetails() const
     {
-        cout << "\nSpecialized Widget Details" << endl;
-        cout << "Product Name: " << productName << endl;
-        cout << "Inventory ID: " << inventoryID << " (Stock: " << stockCount << ")" << endl;
-        cout << "Sales ID: " << salesID << endl;
-        cout << "Unit Price: " << unitPrice << endl;
+        cout << "\nSpecialized Widget Details\n";
+        cout << "Product Name: " << productName << '\n';
+        cout << "Inventory ID: " << inventoryID << " (Stock: " << stockCount << ")\n";
+        cout << "Sales ID: " << salesID << '\n';
+        cout << fixed << setprecision(2) << "Unit Price: " << unitPrice << '\n';
     }
 };
 
 int main()
 {
-    SpecializedWidget sw("SW-500", "INV-101", "S-555");
-
-    sw.fullSetup(100);
-    sw.logShipment(5);
-    sw.printDetails();
-
+    SpecializedWidget widget("SW-500", "INV-101", "S-555");
+    widget.fullSetup(100);
+    widget.logShipment(5);
+    widget.printDetails();
     return 0;
 }

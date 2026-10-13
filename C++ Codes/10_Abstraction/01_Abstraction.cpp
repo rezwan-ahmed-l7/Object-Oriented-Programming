@@ -1,33 +1,41 @@
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 
 class Shape
 {
 public:
-    virtual void area() = 0;
+    virtual ~Shape() = default;
+    virtual double area() const = 0;
 };
 
 class Rectangle : public Shape
 {
-    int length, width;
+private:
+    double length;
+    double width;
 
 public:
-    Rectangle(int l, int w)
+    Rectangle(double l, double w) : length(l), width(w)
     {
-        length = l;
-        width = w;
+        if (l < 0.0 || w < 0.0)
+            throw invalid_argument("Rectangle dimensions cannot be negative.");
     }
 
-    void area()
-    {
-        cout << "Area of Rectangle: " << length * width << endl;
-    }
+    double area() const override { return length * width; }
 };
 
 int main()
 {
-    Rectangle obj(10, 5);
-    obj.area();
-
+    try
+    {
+        const Rectangle rectangle(10, 5);
+        cout << "Area of Rectangle: " << rectangle.area() << '\n';
+    }
+    catch (const invalid_argument &error)
+    {
+        cerr << "Error: " << error.what() << '\n';
+        return 1;
+    }
     return 0;
 }

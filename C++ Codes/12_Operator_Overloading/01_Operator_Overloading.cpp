@@ -1,60 +1,49 @@
 #include <iostream>
 using namespace std;
+
 class Number
 {
 public:
-    int x, y;
-    Number(int p, int q)
+    int x;
+    int y;
+
+    Number(int first, int second) : x(first), y(second) {}
+
+    bool operator<(const Number &other) const
     {
-        x = p;
-        y = q;
+        return x < other.x && y < other.y;
     }
 
-    int operator<(Number obj)
+    Number operator-(const Number &other) const
     {
-        if (x < obj.x && y < obj.y)
-        {
-            return 1;
-        }
-        else
-            return 0;
-    }
-    Number operator-(Number obj)
-    {
-        Number temp(0, 0);
-        temp.x = x - obj.x;
-        temp.y = y - obj.y;
-        return temp;
-    }
-    Number operator++()
-    {
-        Number temp(0, 0);
-        temp.x = x;
-        temp.y = y;
-        x = x + 1;
-        y = y + 1;
-        return temp;
+        return Number(x - other.x, y - other.y);
     }
 
-    void show()
+    Number &operator++()
     {
-        cout << x << " , " << y << endl;
+        ++x;
+        ++y;
+        return *this;
     }
+
+    void show() const { cout << x << " , " << y << '\n'; }
 };
 
 int main()
 {
-    Number n1(0, 0), n2(1, 5), n3(5, 10);
-    n1 = n2;
+    Number n1(1, 5), n2(1, 5), n3(5, 10);
     if (n1 < n3)
     {
         n2 = n3 - n1;
         ++n1;
     }
     else
-        cout << "n1 is greater then n3";
-    cout << "Substracton: ";
+    {
+        cout << "n1 is not smaller than n3\n";
+    }
+    cout << "Subtraction: ";
     n2.show();
     cout << "Incrementing n1: ";
     n1.show();
+    return 0;
 }

@@ -1,39 +1,40 @@
 #include <iostream>
 using namespace std;
+
 class Base
 {
-    int x;
+private:
+    int x{};
 
 public:
-    void setX(int a)
-    {
-        x = a;
-    }
-    void showX()
-    {
-        cout << x << endl;
-    }
+    void setX(int value) { x = value; }
+    void showX() const { cout << "Base value: " << x << '\n'; }
 };
+
 class Derived : private Base
 {
-    int y;
+private:
+    int y{};
 
 public:
-    void setY(int b)
+    void setValues(int baseValue, int derivedValue)
     {
-        y = b;
+        setX(baseValue);
+        y = derivedValue;
     }
-    void showY()
+
+    void showValues() const
     {
-        cout << y << endl;
+        showX();
+        cout << "Derived value: " << y << '\n';
     }
 };
+
 int main()
 {
-    Derived obj;
-    obj.setX(10); // setx is now private so it can't be accessed
-    obj.setY(20);
-    obj.showX();
-    obj.showY();
+    Derived object;
+    object.setValues(10, 20);
+    object.showValues();
+    // Base's public methods are inaccessible through Derived because inheritance is private.
     return 0;
 }
