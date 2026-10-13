@@ -5,22 +5,13 @@ class Number {
     int n, y;
 
 public:
-    Number() {
-        n = 0;
-        y = 0;
-    }
+    Number() : n(0), y(0) {}
 
-    Number(int a) {
-        n = a;
-        y = 0;
-    }
+    explicit Number(int a) : n(a), y(0) {}
 
-    Number(int a, int b) {
-        n = a;
-        y = b;
-    }
+    Number(int a, int b) : n(a), y(b) {}
 
-    void show() {
+    void show() const {
         cout << n << " " << y << endl;
     }
 };
