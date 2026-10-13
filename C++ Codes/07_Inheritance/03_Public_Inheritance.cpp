@@ -1,36 +1,35 @@
 #include <iostream>
 using namespace std;
 
-class base {
-protected :
-    int a, b;
+class Base {
+protected:
+    int a{}, b{};
 
-public :
-    void setab (int n, int m){
-    a = n;
-    b = m;
+public:
+    void setAB(int first, int second) {
+        a = first;
+        b = second;
     }
 };
 
-class derived : public base {
-    int c;
+class Derived : public Base {
+    int c{};
 
-public :
-    void setc(int n){
-        c = n;
-        }
+public:
+    void setC(int value) {
+        c = value;
+    }
 
-    void showabc ( ){
-    cout << a << b << c;
+    void showABC() const {
+        cout << a << ' ' << b << ' ' << c << '\n';
     }
 };
 
-int main ( ){
-
-    derived obj;
-    obj.setab (1,2);
-    obj.setc (3);
-    obj.showabc ( );
+int main() {
+    Derived obj;
+    obj.setAB(1, 2);
+    obj.setC(3);
+    obj.showABC();
 
     return 0;
 }
