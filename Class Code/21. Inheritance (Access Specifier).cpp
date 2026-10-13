@@ -9,16 +9,12 @@ protected:
 public:
     int z;
 
-    A() {
-        x = 1;
-        y = 2;
-        z = 3;
-    }
+    A() : x(1), y(2), z(3) {}
 };
 
 class B : public A {
 public:
-    void show() {
+    void show() const {
         cout << y << endl;
         cout << z << endl;
     }
@@ -26,7 +22,7 @@ public:
 
 class C : protected A {
 public:
-    void show() {
+    void show() const {
         cout << y << endl;
         cout << z << endl;
     }
@@ -34,7 +30,7 @@ public:
 
 class D : private A {
 public:
-    void show() {
+    void show() const {
         cout << y << endl;
         cout << z << endl;
     }
