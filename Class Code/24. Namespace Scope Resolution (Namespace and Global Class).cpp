@@ -4,7 +4,7 @@ using namespace std;
 namespace my_space {
     class MyClass {
     public:
-        void display() {
+        void display() const {
             cout << "Inside my_space::MyClass::display" << endl;
         }
     };
@@ -12,7 +12,7 @@ namespace my_space {
 
 class MyClass {
 public:
-    void display() {
+    void display() const {
         cout << "Inside global MyClass::display" << endl;
     }
 };
