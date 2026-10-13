@@ -4,14 +4,15 @@ using namespace std;
 class Number
 {
 public:
-    int x;
-    int y;
+    long long x;
+    long long y;
 
-    Number(int first, int second) : x(first), y(second) {}
+    Number(long long first, long long second) : x(first), y(second) {}
 
+    // Lexicographical ordering gives operator< a consistent strict ordering.
     bool operator<(const Number &other) const
     {
-        return x < other.x && y < other.y;
+        return x < other.x || (x == other.x && y < other.y);
     }
 
     Number operator-(const Number &other) const
