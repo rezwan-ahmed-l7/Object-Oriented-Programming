@@ -5,11 +5,9 @@ class Base {
     int n;
 
 public:
-    Base(int n) {
-        this->n = n;
-    }
+    explicit Base(int value) : n(value) {}
 
-    void show() {
+    void show() const {
         cout << "Base n: " << n << endl;
     }
 };
@@ -18,18 +16,16 @@ class Derived : public Base {
     int m;
 
 public:
-    Derived(int n, int m) : Base(n) {
-        this->m = m;
-    }
+    Derived(int n, int m) : Base(n), m(m) {}
 
-    void show() {
+    void show() const {
         Base::show();
         cout << "Derived m: " << m << endl;
     }
 };
 
 int main() {
-    Derived obj(10, 20);
+    const Derived obj(10, 20);
     obj.show();
     return 0;
 }
