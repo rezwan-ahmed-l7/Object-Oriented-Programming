@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -12,9 +13,12 @@ public:
     double basicSalary{};
     double grossSalary{};
 
-    void calculateGross()
+    bool calculateGross()
     {
+        if (!isfinite(basicSalary) || basicSalary < 0.0)
+            return false;
         grossSalary = basicSalary * 1.30;
+        return isfinite(grossSalary);
     }
 };
 
@@ -28,16 +32,26 @@ int main()
         return 1;
     }
 
-    vector<Employee> employees(static_cast<size_t>(employeeCount));
+    vector<Employee> employees;
+    try
+    {
+        employees.resize(static_cast<size_t>(employeeCount));
+    }
+    catch (const exception &error)
+    {
+        cerr << "Error: could not allocate employee records: " << error.what() << '\n';
+        return 1;
+    }
+
     for (int i = 0; i < employeeCount; ++i)
     {
         cout << "\nEnter employee ID, Name, Basic Salary: ";
-        if (!(cin >> employees[i].id >> employees[i].name >> employees[i].basicSalary) || employees[i].basicSalary < 0)
+        if (!(cin >> employees[i].id >> employees[i].name >> employees[i].basicSalary) ||
+            !employees[i].calculateGross())
         {
-            cerr << "Error: invalid employee data; salary must be non-negative.\n";
+            cerr << "Error: invalid employee data or salary too large to calculate.\n";
             return 1;
         }
-        employees[i].calculateGross();
     }
 
     size_t highestIndex = 0;
