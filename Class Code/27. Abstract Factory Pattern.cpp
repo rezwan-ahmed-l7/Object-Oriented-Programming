@@ -1,86 +1,83 @@
 #include <iostream>
+#include <memory>
 using namespace std;
 
 class Chair {
 public:
-    virtual void sitOn() = 0;
-    virtual ~Chair() {}
+    virtual void sitOn() const = 0;
+    virtual ~Chair() = default;
 };
 
 class Table {
 public:
-    virtual void putThings() = 0;
-    virtual ~Table() {}
+    virtual void putThings() const = 0;
+    virtual ~Table() = default;
 };
 
 class ModernChair : public Chair {
 public:
-    void sitOn() override {
+    void sitOn() const override {
         cout << "Sitting on Modern Chair" << endl;
     }
 };
 
 class ModernTable : public Table {
 public:
-    void putThings() override {
+    void putThings() const override {
         cout << "Putting things on Modern Table" << endl;
     }
 };
 
 class ClassicChair : public Chair {
 public:
-    void sitOn() override {
+    void sitOn() const override {
         cout << "Sitting on Classic Chair" << endl;
     }
 };
 
 class ClassicTable : public Table {
 public:
-    void putThings() override {
+    void putThings() const override {
         cout << "Putting things on Classic Table" << endl;
     }
 };
 
 class FurnitureFactory {
 public:
-    virtual Chair* createChair() = 0;
-    virtual Table* createTable() = 0;
-    virtual ~FurnitureFactory() {}
+    virtual unique_ptr<Chair> createChair() const = 0;
+    virtual unique_ptr<Table> createTable() const = 0;
+    virtual ~FurnitureFactory() = default;
 };
 
 class ModernFurnitureFactory : public FurnitureFactory {
 public:
-    Chair* createChair() override {
-        return new ModernChair();
+    unique_ptr<Chair> createChair() const override {
+        return make_unique<ModernChair>();
     }
 
-    Table* createTable() override {
-        return new ModernTable();
+    unique_ptr<Table> createTable() const override {
+        return make_unique<ModernTable>();
     }
 };
 
 class ClassicFurnitureFactory : public FurnitureFactory {
 public:
-    Chair* createChair() override {
-        return new ClassicChair();
+    unique_ptr<Chair> createChair() const override {
+        return make_unique<ClassicChair>();
     }
 
-    Table* createTable() override {
-        return new ClassicTable();
+    unique_ptr<Table> createTable() const override {
+        return make_unique<ClassicTable>();
     }
 };
 
 int main() {
-    FurnitureFactory* factory = new ModernFurnitureFactory();
-    Chair* chair = factory->createChair();
-    Table* table = factory->createTable();
+    unique_ptr<FurnitureFactory> factory = make_unique<ModernFurnitureFactory>();
+    unique_ptr<Chair> chair = factory->createChair();
+    unique_ptr<Table> table = factory->createTable();
 
     chair->sitOn();
     table->putThings();
-
-    delete chair;
-    delete table;
-    delete factory;
 
     return 0;
 }
