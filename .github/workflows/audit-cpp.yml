@@ -69,14 +69,14 @@ jobs:
 
               if [ -n "$sample_input" ]; then
                 sample_code=0
-                sample_output=$(printf '%s\\n' "$sample_input" | timeout 3s "$binary" 2>&1) || sample_code=$?
+                sample_output=$(printf '%s\n' "$sample_input" | timeout 3s "$binary" 2>&1) || sample_code=$?
                 if [ "$sample_code" -eq 0 ] && printf '%s' "$sample_output" | grep -Fq "$expected_one" && printf '%s' "$sample_output" | grep -Fq "$expected_two"; then
                   sample_passed=$((sample_passed + 1))
-                  printf 'SAMPLE_PASS\\t%s\\tprovided sample input; expected output checks passed\\n' "$file" >> /tmp/cpp-audit/results.tsv
+                  printf 'SAMPLE_PASS\t%s\tprovided sample input; expected output checks passed\n' "$file" >> /tmp/cpp-audit/results.tsv
                 else
                   sample_failed=$((sample_failed + 1))
-                  printf 'SAMPLE_FAIL\\t%s\\tprovided sample input; expected output checks failed (exit=%s)\\n' "$file" "$sample_code" >> /tmp/cpp-audit/results.tsv
-                  printf '%s\\n' "$sample_output" > "/tmp/cpp-audit/$safe_name.sample.log"
+                  printf 'SAMPLE_FAIL\t%s\tprovided sample input; expected output checks failed (exit=%s)\n' "$file" "$sample_code" >> /tmp/cpp-audit/results.tsv
+                  printf '%s\n' "$sample_output" > "/tmp/cpp-audit/$safe_name.sample.log"
                 fi
               fi
 
