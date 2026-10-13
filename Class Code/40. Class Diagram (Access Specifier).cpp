@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class BankAccount {
@@ -11,21 +12,18 @@ protected:
 public:
     int accountID;
 
-    BankAccount(double b, string name, int id) {
-        balance = b;
-        accountName = name;
-        accountID = id;
-    }
+    BankAccount(double b, const string& name, int id)
+        : balance(b), accountName(name), accountID(id) {}
 
     void setID(int id) {
         accountID = id;
     }
 
-    void setName(string name) {
+    void setName(const string& name) {
         accountName = name;
     }
 
-    void showBalance() {
+    void showBalance() const {
         cout << "Balance: " << balance << endl;
     }
 };
