@@ -1,12 +1,13 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Student {
 public:
     string name;
-    int age;
+    int age = 0;
 
-    void introduce() {
+    void introduce() const {
         cout << "My name is: " << name << endl;
         cout << "My age is: " << age << endl;
     }
