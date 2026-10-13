@@ -21,6 +21,13 @@ int main()
             cerr << "Error: Failed while writing to student.txt.\n";
             return 1;
         }
+
+        file.close();
+        if (!file)
+        {
+            cerr << "Error: Failed while closing student.txt after writing.\n";
+            return 1;
+        }
     }
 
     ifstream readFile("student.txt");
@@ -34,7 +41,7 @@ int main()
     while (getline(readFile, line))
         cout << line << '\n';
 
-    if (!readFile.eof())
+    if (readFile.bad())
     {
         cerr << "Error: Failed while reading student.txt.\n";
         return 1;
