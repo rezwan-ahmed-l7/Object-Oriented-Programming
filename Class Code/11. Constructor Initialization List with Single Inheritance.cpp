@@ -5,16 +5,15 @@ class Base {
     int n;
 
 public:
-    Base(int n) {
+    explicit Base(int value) : n(value) {
         cout << "Constructing Base" << endl;
-        this->n = n;
     }
 
     ~Base() {
         cout << "Destructing Base" << endl;
     }
 
-    void show() {
+    void show() const {
         cout << n << endl;
     }
 };
@@ -23,16 +22,15 @@ class Derived : public Base {
     int m;
 
 public:
-    Derived(int n) : Base(n) {
+    explicit Derived(int value) : Base(value), m(value) {
         cout << "Constructing Derived" << endl;
-        m = n;
     }
 
     ~Derived() {
         cout << "Destructing Derived" << endl;
     }
 
-    void show() {
+    void show() const {
         cout << m << endl;
     }
 };
