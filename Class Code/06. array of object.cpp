@@ -2,14 +2,14 @@
 using namespace std;
 
 class Sample {
-    int a;
+    int a{};
 
 public:
     void seta(int n) {
         a = n;
     }
 
-    int geta() {
+    int geta() const {
         return a;
     }
 };
@@ -20,8 +20,8 @@ int main() {
         ob[i].seta(i * 10);
     }
 
-    for (int i = 0; i < 4; i++) {
-        cout << ob[i].geta() << " ";
+    for (const Sample& item : ob) {
+        cout << item.geta() << " ";
     }
     cout << endl;
 
