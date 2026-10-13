@@ -80,7 +80,9 @@ jobs:
                 fi
               fi
 
-              if [ "$code" -eq 0 ]; then
+              if [ -n "$sample_input" ]; then
+                : # The provided-input test above is authoritative for this selected example.
+              elif [ "$code" -eq 0 ]; then
                 ran=$((ran + 1))
                 printf 'PASS\t%s\tcompiled and exited 0 with stdin closed\n' "$file" >> /tmp/cpp-audit/results.tsv
               elif [ "$code" -eq 124 ]; then
