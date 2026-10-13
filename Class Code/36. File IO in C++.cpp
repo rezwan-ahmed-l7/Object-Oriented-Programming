@@ -18,7 +18,14 @@ int main() {
             cerr << "Error: failed while writing to file: " << fileName << endl;
             return 1;
         }
-    } // The output stream closes automatically here.
+
+        // Check close/flush errors explicitly; the destructor alone cannot report them.
+        outFile.close();
+        if (!outFile) {
+            cerr << "Error: failed while closing file after writing: " << fileName << endl;
+            return 1;
+        }
+    }
 
     ifstream inFile(fileName);
     if (!inFile) {
