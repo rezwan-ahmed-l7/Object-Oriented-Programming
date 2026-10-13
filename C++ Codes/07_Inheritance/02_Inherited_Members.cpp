@@ -3,40 +3,22 @@ using namespace std;
 
 class Base
 {
-    int x;
+    int x{};
 
 public:
-    int retX() const
-    {
-        return x;
-    }
-    void setx(int a)
-    {
-        x = a;
-    }
-    void showX()
-    {
-        cout << x << endl;
-    }
+    int retX() const { return x; }
+    void setx(int value) { x = value; }
+    void showX() const { cout << x << endl; }
 };
 
 class Derived : public Base
 {
-    int y;
+    int y{};
 
 public:
-    void setY(int b)
-    {
-        y = b;
-    }
-    void showsum()
-    {
-        cout << retX() + y << endl;
-    }
-    void showy()
-    {
-        cout << y << endl;
-    }
+    void setY(int value) { y = value; }
+    void showsum() const { cout << retX() + y << endl; }
+    void showy() const { cout << y << endl; }
 };
 
 int main()
