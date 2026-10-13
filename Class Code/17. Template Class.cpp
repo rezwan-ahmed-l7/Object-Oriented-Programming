@@ -6,21 +6,18 @@ class MyTemplate {
     T a, b;
 
 public:
-    MyTemplate(T x, T y) {
-        a = x;
-        b = y;
-    }
+    MyTemplate(T x, T y) : a(x), b(y) {}
 
-    T getMax() {
+    T getMax() const {
         return (a > b) ? a : b;
     }
 };
 
 int main() {
-    MyTemplate<int> obj1(10, 20);
+    const MyTemplate<int> obj1(10, 20);
     cout << "Max (int): " << obj1.getMax() << endl;
 
-    MyTemplate<double> obj2(5.5, 2.2);
+    const MyTemplate<double> obj2(5.5, 2.2);
     cout << "Max (double): " << obj2.getMax() << endl;
 
     return 0;
