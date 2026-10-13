@@ -6,15 +6,20 @@ class NumberList {
     int size;
 
 public:
-    explicit NumberList(int count) : values(count > 0 ? new int[count] : nullptr), size(count > 0 ? count : 0) {
+    explicit NumberList(int count) : values(nullptr), size(count > 0 ? count : 0) {
+        if (size > 0) {
+            values = new int[size];
+        }
         for (int i = 0; i < size; ++i) {
             values[i] = (i + 1) * 10;
         }
     }
 
     // Deep copy: allocate separate storage and copy each element.
-    NumberList(const NumberList& other)
-        : values(other.size > 0 ? new int[other.size] : nullptr), size(other.size) {
+    NumberList(const NumberList& other) : values(nullptr), size(other.size) {
+        if (size > 0) {
+            values = new int[size];
+        }
         for (int i = 0; i < size; ++i) {
             values[i] = other.values[i];
         }
