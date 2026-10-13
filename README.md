@@ -16,7 +16,7 @@
 
 This repository documents my ongoing practice with Object-Oriented Programming (OOP) in C++ as part of my Computer Science and Engineering studies. It contains focused examples for learning core OOP concepts, exploring how they work in code, and practicing problem-solving.
 
-The numbered folders in `C++ Codes` follow a learning sequence from classes and objects to inheritance, polymorphism, file handling, and class templates. Course assignments, exam questions, and lab reports are kept in separate locations.
+The numbered folders in `C++ Codes` follow a learning sequence from classes and objects to inheritance, polymorphism, file handling, and class templates. The `Class Code` directory contains focused lecture examples, including copy constructors, resource management, design patterns, and the five SOLID principles. Course assignments, exam questions, and lab reports are kept in separate locations.
 
 ## Repository Structure
 
@@ -39,6 +39,8 @@ The numbered folders in `C++ Codes` follow a learning sequence from classes and 
 | [15_Real_World_Practice](C%2B%2B%20Codes/15_Real_World_Practice) | Small employee-salary and grocery-related examples |
 | [16_File_Handling](C%2B%2B%20Codes/16_File_Handling) | Writing to and reading from files |
 | [17_Template_Class](C%2B%2B%20Codes/17_Template_Class) | Basic class templates |
+| [18_STL_Map](C%2B%2B%20Codes/18_STL_Map) | Maps, duplicate values, and frequency counting |
+| [Class Code](Class%20Code) | Lecture examples, copy constructors, smart pointers, file I/O, design patterns, and SOLID principles |
 | [Assignments](C%2B%2B%20Codes/Assignments) | Course-related assignment programs |
 | [Exam_Questions](C%2B%2B%20Codes/Exam_Questions) | OOP questions practiced from examinations |
 | [C++ Lab Report](C%2B%2B%20Lab%20Report) | Related C++ lab reports |
@@ -46,12 +48,14 @@ The numbered folders in `C++ Codes` follow a learning sequence from classes and 
 ## Key Concepts
 
 - **Classes and objects:** defining classes, creating objects, and organizing data with member functions
-- **Constructors and destructors:** object initialization, constructor overloading, and destruction order
+- **Constructors and copying:** object initialization, constructor overloading, ordinary copying, and deep copying
+- **Memory management:** raw pointers, `new`/`delete`, virtual destructors, and smart pointers
 - **Encapsulation and access control:** data hiding and access rules
 - **Inheritance:** reusing class behavior through different inheritance relationships
 - **Polymorphism and abstraction:** virtual functions, abstract classes, and pure virtual functions
 - **Operator overloading:** defining operators for user-defined types
-- **C++ features:** namespaces, STL vectors, and class templates
+- **SOLID design principles:** Single Responsibility (SRP), Open/Closed (OCP), Liskov Substitution (LSP), Interface Segregation (ISP), and Dependency Inversion (DIP), each demonstrated in a focused example
+- **C++ features:** namespaces, STL vectors, iterators, maps, lambdas, exceptions, and class templates
 - **File handling:** basic file input and output
 
 ## Getting Started
@@ -91,8 +95,9 @@ Replace the source path and output name with the program you want to run. Each e
 4. Learn the different forms of **Inheritance** and how constructors work with inheritance.
 5. Move on to **Polymorphism**, **Abstraction**, and **Virtual Inheritance**.
 6. Explore **Operator Overloading**, **Namespaces**, and **STL Vectors**.
-7. Finish the topic sequence with **Real-World Practice**, **File Handling**, and **Template Classes**.
-8. Use **Assignments** and **Exam Questions** for additional course practice.
+7. Finish the topic sequence with **Real-World Practice**, **File Handling**, **Template Classes**, and STL maps.
+8. Study the focused **Class Code** examples for deep copying, resource management, design patterns, and the five SOLID principles.
+9. Use **Assignments** and **Exam Questions** for additional course practice.
 
 ## Related Repositories
 
