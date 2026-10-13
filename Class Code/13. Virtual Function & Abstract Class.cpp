@@ -4,11 +4,12 @@ using namespace std;
 class Shape {
 public:
     virtual void area() = 0;
-    virtual ~Shape() {}
+    virtual ~Shape() = default;
 };
 
 class Rectangle : public Shape {
-    int length, width;
+    int length{};
+    int width{};
 
 public:
     void setValues(int l, int w) {
@@ -22,7 +23,7 @@ public:
 };
 
 class Circle : public Shape {
-    int radius;
+    int radius{};
 
 public:
     void setValue(int r) {
@@ -35,14 +36,13 @@ public:
 };
 
 int main() {
-    Shape *s;
     Rectangle r;
     Circle c;
 
     r.setValues(10, 5);
     c.setValue(7);
 
-    s = &r;
+    Shape* s = &r;
     s->area();
 
     s = &c;
