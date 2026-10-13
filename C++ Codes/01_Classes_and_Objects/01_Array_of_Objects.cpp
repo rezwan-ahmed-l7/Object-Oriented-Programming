@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -10,24 +11,32 @@ protected:
 
 public:
     BankAccount(string name, double initialBalance)
-        : account_holder(name), balance(initialBalance < 0.0 ? 0.0 : initialBalance) {}
+        : account_holder(name),
+          balance(isfinite(initialBalance) && initialBalance >= 0.0 ? initialBalance : 0.0) {}
 
-    string getName() const { return account_holder; }
+    const string &getName() const { return account_holder; }
     double getBalance() const { return balance; }
 
-    void setBalance(double newBalance)
+    bool setBalance(double newBalance)
     {
-        if (newBalance >= 0.0)
-            balance = newBalance;
+        if (!isfinite(newBalance) || newBalance < 0.0)
+            return false;
+        balance = newBalance;
+        return true;
     }
 };
 
 void transfer(BankAccount accounts[], int size, const string &senderName,
               const string &receiverName, double amount)
 {
-    if (amount <= 0.0)
+    if (accounts == nullptr || size <= 0)
     {
-        cout << "Error: Transfer amount must be positive!\n";
+        cout << "Error: No accounts are available.\n";
+        return;
+    }
+    if (!isfinite(amount) || amount <= 0.0)
+    {
+        cout << "Error: Transfer amount must be a finite positive number!\n";
         return;
     }
     if (senderName == receiverName)
@@ -41,9 +50,23 @@ void transfer(BankAccount accounts[], int size, const string &senderName,
     for (int i = 0; i < size; ++i)
     {
         if (accounts[i].getName() == senderName)
+        {
+            if (sender != -1)
+            {
+                cout << "Error: Sender name is ambiguous; account names must be unique.\n";
+                return;
+            }
             sender = i;
+        }
         if (accounts[i].getName() == receiverName)
+        {
+            if (receiver != -1)
+            {
+                cout << "Error: Receiver name is ambiguous; account names must be unique.\n";
+                return;
+            }
             receiver = i;
+        }
     }
 
     if (sender == -1 || receiver == -1)
@@ -51,14 +74,30 @@ void transfer(BankAccount accounts[], int size, const string &senderName,
         cout << "Error: Account not found!\n";
         return;
     }
-    if (accounts[sender].getBalance() < amount)
+
+    const double senderBalance = accounts[sender].getBalance();
+    const double receiverBalance = accounts[receiver].getBalance();
+    if (senderBalance < amount)
     {
         cout << "Error: Insufficient balance!\n";
         return;
     }
 
-    accounts[sender].setBalance(accounts[sender].getBalance() - amount);
-    accounts[receiver].setBalance(accounts[receiver].getBalance() + amount);
+    const double newSenderBalance = senderBalance - amount;
+    const double newReceiverBalance = receiverBalance + amount;
+    if (!isfinite(newSenderBalance) || !isfinite(newReceiverBalance) || newSenderBalance < 0.0)
+    {
+        cout << "Error: Transfer would produce an invalid balance.\n";
+        return;
+    }
+
+    // Validate both results before changing either account.
+    if (!accounts[sender].setBalance(newSenderBalance) ||
+        !accounts[receiver].setBalance(newReceiverBalance))
+    {
+        cout << "Error: Transfer failed; balances were not updated safely.\n";
+        return;
+    }
 
     cout << "Transfer successful!\n";
     cout << "Sender: " << accounts[sender].getName()
