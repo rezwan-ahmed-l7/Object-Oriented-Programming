@@ -1,0 +1,45 @@
+name: Compile C++ examples
+
+on:
+  push:
+    branches:
+      - "fix/**"
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  compile-each-source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
+
+      - name: Compile every C++ source independently
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p /tmp/cpp-check
+          total=0
+          failed=0
+          while IFS= read -r -d '' source; do
+            total=$((total + 1))
+            output="/tmp/cpp-check/program-$total"
+            log="/tmp/cpp-check/program-$total.log"
+            if g++ -std=c++17 -Wall -Wextra -Wpedantic "$source" -o "$output" 2>"$log"; then
+              printf 'PASS %s\n' "$source"
+              if [ -s "$log" ]; then
+                sed "s|^|  warning: |" "$log"
+              fi
+            else
+              failed=$((failed + 1))
+              printf 'FAIL %s\n' "$source"
+              cat "$log"
+            fi
+          done < <(find . -type f -name '*.cpp' -print0)
+          printf '\nSummary: %s source files compiled; %s failed.\n' "$total" "$failed"
+          test "$failed" -eq 0
