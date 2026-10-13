@@ -1,4 +1,5 @@
 #include <cmath>
+#include <exception>
 #include <iostream>
 #include <iomanip>
 #include <string>
