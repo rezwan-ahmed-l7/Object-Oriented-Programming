@@ -7,21 +7,18 @@ class Number
     T value;
 
 public:
-    Number(T v)
-    {
-        value = v;
-    }
+    explicit Number(const T &v) : value(v) {}
 
-    void show()
+    void show() const
     {
-        cout << "Value: " << value << endl;
+        cout << "Value: " << value << '\n';
     }
 };
 
 int main()
 {
-    Number<int> intNumber(10);
-    Number<double> doubleNumber(15.5);
+    const Number<int> intNumber(10);
+    const Number<double> doubleNumber(15.5);
 
     intNumber.show();
     doubleNumber.show();
