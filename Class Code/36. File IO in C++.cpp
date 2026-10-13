@@ -1,18 +1,40 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 int main() {
-    ofstream outFile("example.txt");
-    outFile << "Hello, File!" << endl;
-    outFile.close();
+    const char* fileName = "example.txt";
 
-    ifstream inFile("example.txt");
+    {
+        ofstream outFile(fileName);
+        if (!outFile) {
+            cerr << "Error: could not open file for writing: " << fileName << endl;
+            return 1;
+        }
+
+        outFile << "Hello, File!" << endl;
+        if (!outFile) {
+            cerr << "Error: failed while writing to file: " << fileName << endl;
+            return 1;
+        }
+    } // The output stream closes automatically here.
+
+    ifstream inFile(fileName);
+    if (!inFile) {
+        cerr << "Error: could not open file for reading: " << fileName << endl;
+        return 1;
+    }
+
     string line;
     while (getline(inFile, line)) {
         cout << line << endl;
     }
-    inFile.close();
+
+    if (inFile.bad()) {
+        cerr << "Error: failed while reading file: " << fileName << endl;
+        return 1;
+    }
 
     return 0;
 }
