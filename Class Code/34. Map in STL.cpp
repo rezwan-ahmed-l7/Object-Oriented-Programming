@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <string>
 using namespace std;
 
 int main() {
@@ -7,8 +8,8 @@ int main() {
     m["Alif"] = 20;
     m["Sapa"] = 22;
 
-    for (auto &pair : m) {
-        cout << pair.first << " -> " << pair.second << endl;
+    for (const auto& entry : m) {
+        cout << entry.first << " -> " << entry.second << endl;
     }
 
     return 0;
