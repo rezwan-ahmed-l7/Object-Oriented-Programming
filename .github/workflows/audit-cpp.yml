@@ -55,7 +55,7 @@ jobs:
               expected_one=""
               expected_two=""
               case "$file" in
-                "./All C++ Codes/01_Employee_Salary.cpp"|"./All C++ Codes/02_Grocery_Salary.cpp")
+                "./All C++ Codes/01_Employee_Salary.cpp"|"./All C++ Codes/02_Grocery_Salary.cpp"|"./C++ Codes/Salary.cpp")
                   sample_input="2 101 Ali 30000 102 Bob 50000"
                   expected_one="Name: Bob"
                   expected_two="Gross Salary: 65000.00"
