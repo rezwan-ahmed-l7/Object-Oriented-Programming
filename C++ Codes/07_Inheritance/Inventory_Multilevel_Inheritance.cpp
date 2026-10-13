@@ -1,5 +1,7 @@
+#include <cmath>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 #include <stdexcept>
 #include <string>
 using namespace std;
@@ -25,6 +27,11 @@ public:
             cout << "Shipment quantity must be positive.\n";
             return;
         }
+        if (quantity > numeric_limits<int>::max() - stockCount)
+        {
+            cout << "Shipment rejected: stock count would overflow.\n";
+            return;
+        }
         stockCount += quantity;
         cout << "Received " << quantity << " item(s) for inventory ID: " << inventoryId << '\n';
     }
@@ -40,15 +47,15 @@ public:
     SalesRecord(const string &id, const string &saleId, double price, int initialStock)
         : InventoryTracker(id, initialStock), salesId(saleId), unitPrice(price)
     {
-        if (price < 0)
-            throw invalid_argument("Unit price cannot be negative.");
+        if (!isfinite(price) || price < 0.0)
+            throw invalid_argument("Unit price must be finite and non-negative.");
     }
 
     void applyDiscount(double percentage)
     {
-        if (percentage < 0 || percentage > 100)
+        if (!isfinite(percentage) || percentage < 0.0 || percentage > 100.0)
         {
-            cout << "Discount must be between 0 and 100 percent.\n";
+            cout << "Discount must be a finite value between 0 and 100 percent.\n";
             return;
         }
         unitPrice *= (1.0 - percentage / 100.0);
