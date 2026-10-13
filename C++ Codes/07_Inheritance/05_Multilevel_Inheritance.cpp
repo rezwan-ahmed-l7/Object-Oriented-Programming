@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
@@ -11,26 +12,32 @@ protected:
 public:
     explicit Account(double initialBalance = 0.0) : balance(initialBalance)
     {
-        if (initialBalance < 0.0)
-            throw invalid_argument("Initial balance cannot be negative.");
+        if (!isfinite(initialBalance) || initialBalance < 0.0)
+            throw invalid_argument("Initial balance must be finite and non-negative.");
     }
 
     void deposit(double amount)
     {
-        if (amount <= 0.0)
+        if (!isfinite(amount) || amount <= 0.0)
         {
-            cout << "Deposit amount must be positive.\n";
+            cout << "Deposit amount must be finite and positive.\n";
             return;
         }
-        balance += amount;
+        const double newBalance = balance + amount;
+        if (!isfinite(newBalance))
+        {
+            cout << "Deposit rejected: balance would overflow.\n";
+            return;
+        }
+        balance = newBalance;
         cout << "Deposited: " << amount << '\n';
     }
 
     void withdraw(double amount)
     {
-        if (amount <= 0.0)
+        if (!isfinite(amount) || amount <= 0.0)
         {
-            cout << "Withdrawal amount must be positive.\n";
+            cout << "Withdrawal amount must be finite and positive.\n";
             return;
         }
         if (amount > balance)
@@ -54,8 +61,8 @@ public:
     SavingsAccount(double initialBalance = 0.0, double rate = 0.10)
         : Account(initialBalance), interestRate(rate)
     {
-        if (rate < 0.0)
-            throw invalid_argument("Interest rate cannot be negative.");
+        if (!isfinite(rate) || rate < 0.0)
+            throw invalid_argument("Interest rate must be finite and non-negative.");
     }
 
     double calculateInterest() const { return balance * interestRate; }
@@ -70,8 +77,8 @@ public:
     PremiumSavings(double initialBalance = 0.0, double rate = 0.10, double bonus = 100.0)
         : SavingsAccount(initialBalance, rate), bonusAmount(bonus)
     {
-        if (bonus < 0.0)
-            throw invalid_argument("Bonus amount cannot be negative.");
+        if (!isfinite(bonus) || bonus < 0.0)
+            throw invalid_argument("Bonus amount must be finite and non-negative.");
     }
 
     void displayTotalSavings() const
@@ -82,7 +89,10 @@ public:
         cout << "\nBalance: " << getBalance() << '\n';
         cout << "Interest: " << interest << '\n';
         cout << "Bonus: " << bonusAmount << '\n';
-        cout << "Total Savings: " << total << '\n';
+        if (isfinite(total))
+            cout << "Total Savings: " << total << '\n';
+        else
+            cout << "Total Savings: cannot be represented as a finite value.\n";
     }
 };
 
