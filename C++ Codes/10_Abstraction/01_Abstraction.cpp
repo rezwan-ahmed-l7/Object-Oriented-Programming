@@ -1,3 +1,4 @@
+#include <cmath>
 #include <iostream>
 #include <stdexcept>
 using namespace std;
@@ -18,8 +19,10 @@ private:
 public:
     Rectangle(double l, double w) : length(l), width(w)
     {
-        if (l < 0.0 || w < 0.0)
-            throw invalid_argument("Rectangle dimensions cannot be negative.");
+        if (!isfinite(l) || !isfinite(w) || l < 0.0 || w < 0.0)
+            throw invalid_argument("Rectangle dimensions must be finite and non-negative.");
+        if (!isfinite(l * w))
+            throw invalid_argument("Rectangle area is too large to represent.");
     }
 
     double area() const override { return length * width; }
