@@ -3,11 +3,11 @@ using namespace std;
 
 class Number {
 private:
-    int n, y;
+    int n{}, y{};
 
 public:
     void set(int a, int b);
-    void show();
+    void show() const;
 };
 
 void Number::set(int a, int b) {
@@ -15,7 +15,7 @@ void Number::set(int a, int b) {
     y = b;
 }
 
-void Number::show() {
+void Number::show() const {
     cout << n << " " << y << endl;
 }
 
