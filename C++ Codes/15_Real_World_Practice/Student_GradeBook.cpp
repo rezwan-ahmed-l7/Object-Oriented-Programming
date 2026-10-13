@@ -7,8 +7,8 @@ class Student
 {
 private:
     string name;
-    int totalScore = 0;
-    int gradeCount = 0;
+    long long totalScore = 0;
+    long long gradeCount = 0;
 
 public:
     explicit Student(const string &studentName) : name(studentName) {}
@@ -24,7 +24,7 @@ public:
 
     double average() const
     {
-        return gradeCount == 0 ? 0.0 : static_cast<double>(totalScore) / gradeCount;
+        return gradeCount == 0 ? 0.0 : static_cast<double>(totalScore) / static_cast<double>(gradeCount);
     }
 
     void displayInfo() const
