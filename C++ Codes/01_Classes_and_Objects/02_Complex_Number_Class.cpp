@@ -1,11 +1,10 @@
 #include <iostream>
 using namespace std;
 
-class Complex
+struct Complex
 {
-public:
-    int real{};
-    int imag{};
+    long long real{};
+    long long imag{};
 };
 
 Complex add(const Complex &first, const Complex &second)
@@ -30,20 +29,24 @@ void display(const char *label, const Complex &number)
 
 int main()
 {
-    Complex first, second;
+    int firstReal, firstImag, secondReal, secondImag;
+
     cout << "Enter real and imaginary parts of the first complex number: ";
-    if (!(cin >> first.real >> first.imag))
+    if (!(cin >> firstReal >> firstImag))
     {
         cerr << "Error: invalid first complex number.\n";
         return 1;
     }
+
     cout << "Enter real and imaginary parts of the second complex number: ";
-    if (!(cin >> second.real >> second.imag))
+    if (!(cin >> secondReal >> secondImag))
     {
         cerr << "Error: invalid second complex number.\n";
         return 1;
     }
 
+    const Complex first{firstReal, firstImag};
+    const Complex second{secondReal, secondImag};
     display("Sum: ", add(first, second));
     display("Difference: ", subtract(first, second));
     return 0;
