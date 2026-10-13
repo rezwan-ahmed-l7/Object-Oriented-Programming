@@ -1,28 +1,50 @@
-// SRP - Single Responsibility Principle
+// SRP - Single Responsibility Principle (Example 2)
 #include <iostream>
 #include <string>
 using namespace std;
 
-// Report owns report data; ReportPrinter owns the printing responsibility.
-class Report {
-    string data;
+// Employee stores employee information only.
+class Employee {
+    string name;
+    double monthlySalary;
+
 public:
-    explicit Report(string d) : data(d) {}
-    const string& getData() const {
-        return data;
+    Employee(string employeeName, double salary)
+        : name(employeeName), monthlySalary(salary) {}
+
+    const string& getName() const {
+        return name;
+    }
+
+    double getMonthlySalary() const {
+        return monthlySalary;
     }
 };
 
-class ReportPrinter {
+// SalaryCalculator handles salary calculations only.
+class SalaryCalculator {
 public:
-    void print(const Report& report) const {
-        cout << "Printing: " << report.getData() << endl;
+    double calculateAnnualSalary(const Employee& employee) const {
+        return employee.getMonthlySalary() * 12;
+    }
+};
+
+// EmployeeReportPrinter handles presentation only.
+class EmployeeReportPrinter {
+public:
+    void print(const Employee& employee, double annualSalary) const {
+        cout << "Employee: " << employee.getName() << endl;
+        cout << "Monthly salary: " << employee.getMonthlySalary() << endl;
+        cout << "Annual salary: " << annualSalary << endl;
     }
 };
 
 int main() {
-    Report report("Monthly Report");
-    ReportPrinter printer;
-    printer.print(report);
+    Employee employee("Alif", 30000.0);
+    SalaryCalculator calculator;
+    EmployeeReportPrinter printer;
+
+    const double annualSalary = calculator.calculateAnnualSalary(employee);
+    printer.print(employee, annualSalary);
     return 0;
 }
