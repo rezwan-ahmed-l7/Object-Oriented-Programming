@@ -14,32 +14,33 @@ public:
     int getVisitors() const { return visitors; }
     int getTickets() const { return tickets; }
 
-    friend int minimumRides(const ParkGroup groups[], int groupCount, int capacity);
+    friend long long minimumRides(const ParkGroup groups[], int groupCount, int capacity);
 };
 
-int minimumRides(const ParkGroup groups[], int groupCount, int capacity)
+long long minimumRides(const ParkGroup groups[], int groupCount, int capacity)
 {
-    if (groupCount < 0 || capacity <= 0)
+    if (groupCount < 0 || capacity <= 0 || (groupCount > 0 && groups == nullptr))
         return -1;
 
-    int totalTickets = 0;
+    long long totalTickets = 0;
     for (int i = 0; i < groupCount; ++i)
     {
-        if (groups[i].tickets < 0)
+        if (groups[i].visitors < 0 || groups[i].tickets < 0)
             return -1;
         totalTickets += groups[i].tickets;
     }
-    return (totalTickets + capacity - 1) / capacity;
+
+    return totalTickets / capacity + (totalTickets % capacity != 0);
 }
 
 int main()
 {
     const ParkGroup groups[] = {
         ParkGroup(4, 4), ParkGroup(3, 4), ParkGroup(1, 1), ParkGroup(2, 1)};
-    const int groupCount = sizeof(groups) / sizeof(groups[0]);
+    const int groupCount = static_cast<int>(sizeof(groups) / sizeof(groups[0]));
     const int rideCapacity = 4;
 
-    int rides = minimumRides(groups, groupCount, rideCapacity);
+    const long long rides = minimumRides(groups, groupCount, rideCapacity);
     if (rides < 0)
     {
         cerr << "Invalid group, ticket, or ride-capacity data.\n";
@@ -47,7 +48,7 @@ int main()
     }
 
     int totalVisitors = 0;
-    int totalTickets = 0;
+    long long totalTickets = 0;
     for (int i = 0; i < groupCount; ++i)
     {
         totalVisitors += groups[i].getVisitors();
