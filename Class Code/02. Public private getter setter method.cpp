@@ -1,29 +1,32 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Student {
 private:
-    int age;
+    int age = 0;
     string name;
 
 public:
     void setAge(int a) {
-        age = a;
+        if (a >= 0) {
+            age = a;
+        }
     }
 
-    void setName(string n) {
+    void setName(const string& n) {
         name = n;
     }
 
-    int getAge() {
+    int getAge() const {
         return age;
     }
 
-    string getName() {
+    const string& getName() const {
         return name;
     }
 
-    void introduce() {
+    void introduce() const {
         cout << "My name is: " << name << endl;
         cout << "My age is: " << age << endl;
     }
