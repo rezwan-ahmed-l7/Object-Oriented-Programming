@@ -1,6 +1,11 @@
 name: C++ Repository Audit
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.cpp'
+      - '.github/workflows/audit-cpp.yml'
   push:
     branches: [main]
     paths:
