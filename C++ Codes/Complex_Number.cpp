@@ -1,49 +1,40 @@
 #include <iostream>
 using namespace std;
 
-class Complex
-{
+class Complex {
 public:
-    int real;
-    int imag;
+    int real{};
+    int imag{};
 };
 
-Complex add(Complex c1, Complex c2)
-{
-    Complex temp;
-    temp.real = c1.real + c2.real;
-    temp.imag = c1.imag + c2.imag;
-    return temp;
+Complex add(const Complex& c1, const Complex& c2) {
+    return {c1.real + c2.real, c1.imag + c2.imag};
 }
 
-Complex sub(Complex c1, Complex c2)
-{
-    Complex temp;
-    temp.real = c1.real - c2.real;
-    temp.imag = c1.imag - c2.imag;
-    return temp;
+Complex sub(const Complex& c1, const Complex& c2) {
+    return {c1.real - c2.real, c1.imag - c2.imag};
 }
 
-int main()
-{
-    Complex c1, c2, sum, diff;
-    int a1, b1, a2, b2;
+void display(const char* label, const Complex& c) {
+    cout << label << c.real;
+    if (c.imag > 0) cout << " + " << c.imag << 'i';
+    else if (c.imag < 0) cout << " - " << -c.imag << 'i';
+    cout << endl;
+}
 
-    cout << "Taking input of 1st complex number: ";
-    cin >> a1 >> b1;
-    cout << "Now for 2nd complex number: ";
-    cin >> a2 >> b2;
-
-    c1.real = a1;
-    c1.imag = b1;
-    c2.real = a2;
-    c2.imag = b2;
-
-    sum = add(c1, c2);
-    diff = sub(c1, c2);
-
-    cout << "\nSum: " << sum.real << " + " << sum.imag << "i" << endl;
-    cout << "Difference: " << diff.real << " + " << diff.imag << "i" << endl;
-
+int main() {
+    Complex c1, c2;
+    cout << "Taking input of 1st complex number (real imaginary): ";
+    if (!(cin >> c1.real >> c1.imag)) {
+        cerr << "Invalid complex number input." << endl;
+        return 1;
+    }
+    cout << "Now for 2nd complex number (real imaginary): ";
+    if (!(cin >> c2.real >> c2.imag)) {
+        cerr << "Invalid complex number input." << endl;
+        return 1;
+    }
+    display("\nSum: ", add(c1, c2));
+    display("Difference: ", sub(c1, c2));
     return 0;
 }
