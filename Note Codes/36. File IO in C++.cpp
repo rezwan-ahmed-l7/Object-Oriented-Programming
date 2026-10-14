@@ -33,10 +33,13 @@ int main() {
     while (getline(inFile, line)) {
         cout << line << endl;
     }
-    if (!inFile.eof()) {
+    // eofbit is expected after getline reaches end-of-file; badbit signals a read error.
+    if (inFile.bad()) {
         cerr << "Error: Failed while reading from file." << endl;
         return 1;
     }
+
+    inFile.clear(); // Clear expected eofbit before checking close status.
     inFile.close();
     if (inFile.fail()) {
         cerr << "Error: Failed to close input file correctly." << endl;
