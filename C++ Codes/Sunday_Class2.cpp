@@ -2,30 +2,26 @@
 using namespace std;
 
 class base {
-protected :
+protected:
     int a, b;
-
-public :
-    void setab (int n, int m){
-    a = n;
-    b = m;
-    }
+public:
+    void setab(int n, int m) { a = n; b = m; }
 };
 
 class derived : protected base {
     int c;
+public:
+    derived() : c(0) { setab(0, 0); }
 
-public :
-    void setc(int n){c = n;}
-    void showabc ( ){
-    cout << a << b << c;
-    }
+    // Public wrapper initializes base data while preserving protected inheritance.
+    void setValues(int n, int m, int p) { setab(n, m); c = p; }
+    void setc(int n) { c = n; }
+    void showabc() const { cout << a << " " << b << " " << c << endl; }
 };
 
-int main ( ){
+int main() {
     derived obj;
-   //obj.setab (1,2);  //It cant be accessed because it is inherited in protected
-    obj.setc (3);
-    obj.showabc ( );
+    obj.setValues(1, 2, 3);
+    obj.showabc();
     return 0;
 }

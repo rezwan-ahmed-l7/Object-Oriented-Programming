@@ -1,6 +1,11 @@
 name: C++ Repository Audit
 
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.cpp'
+      - '.github/workflows/audit-cpp.yml'
   push:
     branches: [main]
     paths:
@@ -64,6 +69,91 @@ jobs:
                   sample_input="3 4 1 -2"
                   expected_one="Sum: 4 + 2i"
                   expected_two="Difference: 2 + 6i"
+                  ;;
+                "./C++ Codes/Bank_System.cpp")
+                  sample_input=" "
+                  expected_one="Balance: 8500"
+                  expected_two="Total Savings: 9850"
+                  ;;
+                "./C++ Codes/Assaignment_2.cpp")
+                  sample_input=" "
+                  expected_one="Account holder's name: Paris"
+                  expected_two="Balance: 5000"
+                  ;;
+                "./C++ Codes/Grocery_Salary.cpp")
+                  sample_input="2 101 Ali 30000 102 Bob 50000"
+                  expected_one="Name: Bob"
+                  expected_two="Gross Salary: 65000.00"
+                  ;;
+                "./C++ Codes/Complex_Number.cpp")
+                  sample_input="3 4 1 -2"
+                  expected_one="Sum: 4 + 2i"
+                  expected_two="Difference: 2 + 6i"
+                  ;;
+                "./C++ Codes/Inventory_Tracker.cpp")
+                  sample_input=" "
+                  expected_one="Stock: 105"
+                  expected_two="Unit Price: 8.5"
+                  ;;
+                "./C++ Codes/Class_Work_2.cpp")
+                  sample_input=" "
+                  expected_one="New balance: 800"
+                  expected_two="New balance: 700"
+                  ;;
+                "./C++ Codes/Tuesday_HW.cpp")
+                  sample_input=" "
+                  expected_one="Constructing C"
+                  expected_two="2"
+                  ;;
+                "./C++ Codes/Multiple_Inheritance_Tree_Problem.cpp")
+                  sample_input="2"
+                  expected_one="Class C: 4"
+                  expected_two="Class D: 1"
+                  ;;
+                "./C++ Codes/Operator_Overloading.cpp")
+                  sample_input=" "
+                  expected_one="Subtraction: 4 , 5"
+                  expected_two="Incremented n1: 2 , 6"
+                  ;;
+                "./C++ Codes/Exam_Question_1.cpp")
+                  sample_input=" "
+                  expected_one="Quantity in Stock: 10"
+                  expected_two="Quantity in Stock: 5"
+                  ;;
+                "./C++ Codes/Default_Arguments.cpp")
+                  sample_input=" "
+                  expected_one="3"
+                  expected_two="10.5"
+                  ;;
+                "./C++ Codes/Operator_Overloading_Examples.cpp")
+                  sample_input=" "
+                  expected_one="Addition: 13"
+                  expected_two="Postfix object after operation: 6"
+                  ;;
+                "./C++ Codes/Sunday_Class2.cpp")
+                  sample_input=" "
+                  expected_one="1 2 3"
+                  expected_two=""
+                  ;;
+                "./C++ Codes/Class_Code_5.cpp")
+                  sample_input=" "
+                  expected_one="A values (private, protected, public): 1, 2, 3"
+                  expected_two="objB.z is public: 3"
+                  ;;
+                "./C++ Codes/Assaignment_1.cpp")
+                  sample_input=" "
+                  expected_one="Area: 15"
+                  expected_two="Perimeter: 16"
+                  ;;
+                "./C++ Codes/Exam_Question_2.cpp")
+                  sample_input=" "
+                  expected_one="Balance: 4000"
+                  expected_two="Transfer successful!"
+                  ;;
+                "./Note Codes/36. File IO in C++.cpp")
+                  sample_input=" "
+                  expected_one="Hello, File!"
+                  expected_two=""
                   ;;
               esac
 
